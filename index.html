@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input id="element" type="text" placeholder="New Data...">
+
+    <button onclick="addArray()"> Add Array seperated by , ...</button>
+
+    <br><input type="text" id="index" placeholder="extra parcels...">
+    
+    <button onclick="solution()">Solution</button>
+    <script>
+
+        //direct fn
+        //data.splice(0,1) /// del 2 from data
+
+        var data = []
+        console.log(data)
+        function addArray() {
+            console.log("inside")
+            // alert("isdie fn")
+            let elem = (document.querySelector("#element").value);
+            // data.push(elem);
+
+
+            var textarr = elem.split(/[,.]/);
+
+            for (let k = 0; k < textarr.length; k++) {
+                data.push(Number(textarr[k]));
+            }
+
+            console.log(data);
+
+        }
+
+        // Real logic start from here
+        // answer in console       
+
+        function solution() {
+            let extra = Number(document.querySelector("#index").value);
+            console.log(data)
+            var max = 0;
+            var sum = 0;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] > max) {
+                    max = data[i];
+                }
+            }
+
+            for (let j = 0; j < data.length; j++) {
+                console.log("inside sub")
+                data[j] = max - data[j];
+            }
+
+            console.log(max)
+            console.log(data)
+
+
+            for (let k = 0; k < data.length; k++) {
+                sum = sum + data[k];
+            }
+
+            if (sum >= extra) {
+                console.log(`Max parcel = ${max}`)
+            }
+
+            else {
+                let diff = extra - sum;
+                let div = Math.ceil(diff / data.length)
+                alert(`Max parcel = ${div + max}`)
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>
